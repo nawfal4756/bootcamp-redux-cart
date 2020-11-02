@@ -12,11 +12,17 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { useStyles } from "./MenuBar.styles";
+import { NavLink } from "react-router-dom";
 
 export default function MenuBar() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const itemsList = ["Home", "About Us", "Store", "Contact Us"];
+  const itemsList = [
+    { name: "Home", link: "" },
+    { name: "About Us", link: "about-us" },
+    { name: "Store", link: "store" },
+    { name: "Contact Us", link: "contact-us" },
+  ];
 
   return (
     <div className={classes.root}>
@@ -50,22 +56,30 @@ export default function MenuBar() {
             setOpen(false);
           }}
         >
-          <div className={classes.backButton}>
-            <IconButton
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
+          <div
+            className={classes.backButton}
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            <IconButton>
               <ChevronLeftIcon />
             </IconButton>
           </div>
           <Divider />
           <List>
-            {itemsList.map((name, index) => (
-              <div key={index}>
-                <ListItem button>
-                  <Typography className={classes.drawerText}>{name}</Typography>
-                </ListItem>
+            {itemsList.map(({ name, link }, index) => (
+              <div
+                key={Number(index)}
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                <NavLink to={`/${link}`}>
+                  <ListItem button>
+                    <Typography>{name}</Typography>
+                  </ListItem>
+                </NavLink>
                 <Divider />
               </div>
             ))}

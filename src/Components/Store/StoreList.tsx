@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { useStyles } from "./StoreList.styles";
+import { Link } from "react-router-dom";
 
 export default function StoreList() {
   const url = "/store/";
@@ -58,18 +59,25 @@ export default function StoreList() {
             <CircularProgress />
           </Backdrop>
         ) : (
-          data?.map(({ name, id, img, price }) => (
+          data?.map(({ id, name, img, price }) => (
             <Grid item xs={10} md={10} lg={3} key={id}>
               <Card raised className={classes.card}>
-                <CardContent>
-                  <img src={img} alt={name} className={classes.image} />
-                  <Typography className={classes.text}>{name}</Typography>
-                  <Typography className={classes.text}>${price}.00</Typography>
-                </CardContent>
+                <Link to={`/store/${category}/${id}`}>
+                  <CardContent>
+                    <img src={img} alt={name} className={classes.image} />
+
+                    <Typography className={classes.text}>{name}</Typography>
+                    <Typography className={classes.text}>
+                      ${price}.00
+                    </Typography>
+                  </CardContent>
+                </Link>
                 <CardActions>
-                  <Button className={classes.button} variant="outlined">
-                    View Product
-                  </Button>
+                  <Link to={`/store/${category}/${id}`}>
+                    <Button className={classes.button} variant="outlined">
+                      View Product
+                    </Button>
+                  </Link>
                   <Button className={classes.button} variant="outlined">
                     <AddShoppingCartIcon />
                     <Typography>Add to Cart</Typography>

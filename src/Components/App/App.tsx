@@ -6,6 +6,7 @@ import MenuBar from "../MenuBar/MenuBar";
 import ProductInfo from "../Store/ProductInfo";
 import Store from "../Store/Store";
 import StoreList from "../Store/StoreList";
+import StoreListOutlet from "../Store/StoreListOutlet";
 import StoreOutlet from "../Store/StoreOutlet";
 import { useStyles } from "./App.styles";
 
@@ -22,7 +23,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<StoreOutlet />}>
             <Route path="/" element={<Store />} />
-            <Route path=":category" element={<StoreList />}>
+            <Route path=":category" element={<StoreListOutlet />}>
+              <Route path="/" element={<StoreList />} />
               <Route path=":id" element={<ProductInfo />} />
             </Route>
           </Route>

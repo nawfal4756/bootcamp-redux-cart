@@ -64,7 +64,7 @@ export default function StoreList() {
               <Card raised className={classes.card}>
                 <Link to={`/store/${category}/${id}`}>
                   <CardContent>
-                    <img src={img} alt={name} className={classes.image} />
+                    <img src={img[0]} alt={name} className={classes.image} />
 
                     <Typography className={classes.text}>{name}</Typography>
                     <Typography className={classes.text}>

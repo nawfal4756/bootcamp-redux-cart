@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const cartSlice: any = createSlice({
   name: "shoppingCart",
@@ -6,11 +6,16 @@ export const cartSlice: any = createSlice({
     cart: [],
   },
   reducers: {
-    addItem: (state: any, action) => {
-      state.cart, action.payload;
-    },
-  },
-});
+    addItem: (state: any, action: any) => {
+      return state.map((item: any) => {
+        if (item.id !== action.payload.id) {
+          return item
+        }
 
+        return {...item, added: true},
+      })
+    }
+  }  
+})
 export const { addItem, deleteItem } = cartSlice.actions;
 export default cartSlice.reducer;

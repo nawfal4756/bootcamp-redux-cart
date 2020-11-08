@@ -23,4 +23,7 @@ export const useStyles = makeStyles((theme) => ({
     padding: "10px",
     justifyContent: "flex-end",
   },
+  shoopingIcon: {
+    color: "white",
+  },
 }));

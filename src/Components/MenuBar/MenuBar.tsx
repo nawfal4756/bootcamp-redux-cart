@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   AppBar,
+  Badge,
   Divider,
   Drawer,
   IconButton,
@@ -11,8 +12,10 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { useStyles } from "./MenuBar.styles";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function MenuBar() {
   const classes = useStyles();
@@ -38,6 +41,13 @@ export default function MenuBar() {
           <Typography variant="h5" className={classes.title}>
             Nawfal's Shoe Store
           </Typography>
+          <Link to="/cart">
+            <IconButton>
+              <Badge>
+                <ShoppingCartOutlinedIcon className={classes.shoopingIcon} />
+              </Badge>
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
 

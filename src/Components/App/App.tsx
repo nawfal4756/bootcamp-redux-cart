@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import shopServer from "../../Mirage";
+import Cart from "../Cart/Cart";
 import Home from "../Home/Home";
 import MenuBar from "../MenuBar/MenuBar";
 import ProductInfo from "../Store/ProductInfo";
@@ -28,6 +29,7 @@ export default function App() {
               <Route path=":id" element={<ProductInfo />} />
             </Route>
           </Route>
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>
     </div>

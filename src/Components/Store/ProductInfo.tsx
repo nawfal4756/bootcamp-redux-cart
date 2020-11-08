@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { useStyles } from "./ProductInfo.styles";
+import { addItem } from "../Cart/CartSlice";
+import { useDispatch } from "react-redux";
 
 // interface DataTypes {
 //   id?: string;
@@ -51,7 +53,6 @@ export default function ProductInfo() {
         const filtered = tempData.data.items.filter(
           (data: { id: string }) => data.id === `${id}`
         );
-        console.log("filtered", filtered);
         setData(filtered);
       } catch (error) {
         console.log("error", error);
@@ -63,7 +64,19 @@ export default function ProductInfo() {
   }, []);
 
   const classes = useStyles();
-  console.log("data", displayData);
+  const dispatch = useDispatch();
+
+  const addItemHandler = () => {
+    const newItem = {
+      id: displayData?.id,
+      name: displayData?.name,
+      img: displayData?.img,
+      quantity: quantity,
+      price: displayData?.price,
+    };
+
+    dispatch(addItem(newItem));
+  };
 
   return (
     <div className={classes.root}>
@@ -132,7 +145,7 @@ export default function ProductInfo() {
           </Typography>
           <Box display="flex">
             <Box m="auto">
-              <Button variant="outlined">
+              <Button variant="outlined" onClick={addItemHandler}>
                 <AddShoppingCartIcon />
                 Add to Cart
               </Button>
